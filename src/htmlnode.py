@@ -42,3 +42,25 @@ class LeafNode(HTMLNode):
             for prop in self.props:
                 prop_message += f' {prop}="{self.props[prop]}"'
         return f'<{self.tag}{prop_message}>{self.value}</{self.tag}>'
+
+class ParentNode(HTMLNode):
+
+    def __init__(self, tag, children, props = None):
+        super().__init__(tag = tag, children=children, props=props)
+
+    def to_html(self):
+        if not self.tag:
+            raise ValueError("No Tag given")
+        if not self.children:
+            raise ValueError("parentnode must have child node")
+        complete_html_tag = ""
+        prop_message = ""
+        if self.props:
+            for prop in self.props:
+                prop_message += f' {prop}="{self.props[prop]}"'
+        complete_html_tag = f"<{self.tag}{prop_message}>"
+        for child in self.children:
+            complete_html_tag += child.to_html() 
+        return complete_html_tag + f"</{self.tag}>"
+          
+    
