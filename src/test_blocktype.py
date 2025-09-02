@@ -25,15 +25,15 @@ class Testsplitnode(unittest.TestCase):
         self.assertEqual(block_to_block_type(md), BlockType.paragraph)
 
     def test_blocktype_code(self):
-        md = "''' this should be some code '''"
+        md = "``` this should be some code ```"
         self.assertEqual(block_to_block_type(md), BlockType.code)
 
     def test_blocktype_not_code(self):
-        md = "'' this should be a paragraph looking like code '''"
+        md = "`` this should be a paragraph looking like code ```"
         self.assertEqual(block_to_block_type(md), BlockType.paragraph)
 
     def test_blocktype_code_but_looks_like_header(self):
-        md = "''' ### this should be a code but has hashes '''"
+        md = "``` ### this should be a code but has hashes ```"
         self.assertEqual(block_to_block_type(md), BlockType.code)
 
     def test_blocktype_quote_one_line(self):

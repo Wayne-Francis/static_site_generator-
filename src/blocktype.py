@@ -12,7 +12,7 @@ class BlockType(Enum):
 
 def block_to_block_type(markdown):
     #blocks = markdown_to_blocks(markdown)
-    if markdown.startswith("'''") and markdown.endswith("'''"):
+    if markdown.startswith("```") and markdown.endswith("```"):
             return BlockType.code
     header_count = 0
     for i in range(len(markdown)):
